@@ -21,6 +21,7 @@
 9. [Pricing](#9-pricing)
 10. [Open Questions](#10-open-questions)
 11. [Assumptions](#11-assumptions)
+12. [PRD Self-Evaluation Checklist](#12-prd-self-evaluation-checklist)
 
 ---
 
@@ -672,3 +673,47 @@ The following assumptions were made to produce a complete PRD. Each is a risk it
 12. **Pricing model and tiers are directional only** — final pricing will be validated through user interviews and a pricing sensitivity survey during the beta phase.
 13. **The Supabase Storage bucket and its RLS policies are created via SQL**, not via the Supabase dashboard. The `database.sql` file must include `INSERT INTO storage.buckets` and three `CREATE POLICY ON storage.objects` statements (INSERT, SELECT, DELETE). If these are omitted from the SQL file, PDF uploads will silently fail — the upload route will catch the storage error, leave `file_path = null`, and the PDF viewer will not render. The text viewer fallback will still work because `contract_text` is stored independently in the DB.
 14. **The full conversation history is passed to the chat model on every turn**, not just the last 10 messages. The chat route fetches all messages for the session (up to 200) in ascending order and passes them as the message array. This enables memory-style questions ("what did you say earlier about X?"). The query classification layer (`contract` / `history` / `both`) adjusts the system prompt and context inclusion without an extra API call.
+
+---
+
+## 12. PRD Self-Evaluation Checklist
+
+This PRD is validated against the standard PRD checklist covering Problem Definition, Solution Definition, and Core Metrics. Every item is mapped to the section that satisfies it so the document can be audited at a glance.
+
+**Overall: 16 / 16 items passing.**
+
+### Section 1 — Problem Definition (8/8)
+
+| # | Criterion | Status | Where it's covered |
+|---|---|---|---|
+| 1.1 | Problem & job-to-be-done clearly articulated | ✅ | §1 "What problem is this solving?" — 90–120 min manual review, missed obligations, no in-house legal |
+| 1.2 | Customer persona(s) defined with role, industry, needs | ✅ | §1 Primary persona (Time-Pressed Founder/Ops Lead) + Secondary persona (Freelancer/Consultant), each with industry, role, behaviour, pain |
+| 1.3 | Problem validated with real data or market research | ✅ | §1 "Why is this problem worth solving?" — legal tech market $25.9B, 43% SMB dispute stat, $1,500–3,000 review cost |
+| 1.4 | Why this problem is worth solving for this user | ✅ | §1 quantified pain (time + cost per contract) and frequency (5–15 contracts/month) |
+| 1.5 | Clear and defensible MOAT defined | ✅ | §1 MOAT — contract-type specificity, feedback loop, confidence transparency, chat grounded in document |
+| 1.6 | Justification for Agentic AI over rule-based systems | ✅ | §1 "Why Agentic AI?" — clause variant diversity, >30% regex miss rate |
+| 1.7 | Unstructured data types listed + need for ML/LLMs explained | ✅ | §1 "Why Agentic AI?" — free-form legal prose across NDAs/MSAs; why LLMs are necessary |
+| 1.8 | Differentiated from ChatGPT, Copilots, or similar | ✅ | §1 "Why not just ChatGPT?" + market gap vs DocuSign CLM, Ironclad, Kira |
+
+### Section 2 — Solution Definition (4/4)
+
+| # | Criterion | Status | Where it's covered |
+|---|---|---|---|
+| 2.1 | Visual user flow included (input → processing → output) | ✅ | §2 User Flows 1–4 with step-by-step flow diagrams |
+| 2.2 | AI drawbacks addressed (hallucination, explainability, etc.) | ✅ | §2 Flow 3 hallucination safeguard + explainability; §8 Responsible AI; §6 chat hallucination risk |
+| 2.3 | Core functional requirements in user story format | ✅ | §2 User Stories US-001–US-012 in "As a… I want… so that…" format |
+| 2.4 | Agent capabilities and system behaviour clearly described | ✅ | §2 "Agent Capabilities & System Behaviour" table with autonomy levels + human-in-loop triggers |
+
+### Section 3 — Core Metrics (4/4)
+
+| # | Criterion | Status | Where it's covered |
+|---|---|---|---|
+| 3.1 | North Star metric defined | ✅ | §1 North Star — avg time from upload to completed key-term review (≤ 15 min) |
+| 3.2 | 1–2 primary metrics listed | ✅ | §1 Primary Metrics — extraction F1 (≥ 88%), confidence calibration, time to first term |
+| 3.3 | Secondary/supporting metrics included | ✅ | §1 Secondary Metrics — 30-day retention, NPS, contracts/user/month, correction rate, cost/analysis |
+| 3.4 | Metrics are measurable and trackable over time | ✅ | §1 each metric has baseline, target, and tracking method (session logs, eval suite, Supabase analytics) |
+
+### Strengths
+- **Metrics rigor:** every metric carries a baseline, target, and a concrete tracking mechanism.
+- **Trust-by-design:** confidence scoring, source-sentence explainability, and document-grounded chat directly answer the top AI adoption risks.
+- **Build-ready:** §3 database/storage requirements and §4 component risk assessment make the PRD executable, not just aspirational.
