@@ -18,7 +18,7 @@ description: >
 Your job is to scaffold a complete Next.js 14 (App Router) project end to end
 by writing all files manually, then guiding the user to start the dev server.
 
-**Default stack: Next.js 14 + TypeScript.** Before scaffolding, check `docs/engineering/engineering-doc.md` or any PRD for tech stack overrides (different framework, JS instead of TS, etc.). If the PRD specifies something different, use that instead. If no PRD exists or it doesn't specify, proceed with the TypeScript default.
+**Default stack: Next.js 14 + TypeScript.** If the PRD specifies a different tech stack, confirm with the user before using it. Never switch stacks silently.
 
 Do every step in order. Do not skip any step.
 
@@ -31,7 +31,16 @@ Before asking the user anything, read `docs/engineering/engineering-doc.md` if i
 - Language preference (TypeScript vs JavaScript)
 - Any additional dependencies called out (UI library, state management, etc.)
 
-If the PRD specifies overrides, apply them throughout all steps below. If it is silent or missing, use the defaults: **Next.js 14, TypeScript**.
+Then follow this decision tree:
+
+**If the PRD specifies a different tech stack** (e.g. JavaScript instead of TypeScript, Vite instead of Next.js, a different framework):
+- Use `AskUserQuestion` to confirm with the user before proceeding:
+  - **Question:** "The PRD specifies [X]. Would you like to use that, or stick with the default (Next.js 14 + TypeScript)?"
+  - **Options:** "Use [X] from the PRD" / "Use the default (Next.js 14 + TypeScript)"
+- Use whichever option the user picks and apply it throughout all steps below.
+
+**If the PRD is silent or does not exist:**
+- Use the defaults: **Next.js 14, TypeScript**. No need to ask the user anything about the stack.
 
 ---
 
@@ -301,7 +310,7 @@ Then tell them:
 
 ## Notes
 
-- **Default is TypeScript.** All files use `.tsx` / `.ts`. Only switch to `.jsx` / `.js` if the PRD or user explicitly requests JavaScript.
+- **TypeScript is hardcoded.** All files always use `.tsx` / `.ts`. Never use `.jsx` or `.js` regardless of what the PRD or user requests.
 - If the project folder already exists, delete it and start fresh.
 - Replace `<project-path>` with the actual absolute path to the project directory.
 - Port 3000 is Next.js's default. If it's in use, try 3001.
