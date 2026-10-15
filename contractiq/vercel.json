@@ -1,0 +1,8 @@
+{
+  "crons": [{ "path": "/api/cron/retention", "schedule": "0 3 * * *" }],
+  "functions": {
+    "src/app/api/contracts/[id]/process/route.ts": { "maxDuration": 90 },
+    "src/app/api/contracts/[id]/chat/route.ts": { "maxDuration": 60 },
+    "src/app/api/contracts/[id]/extract/route.ts": { "maxDuration": 30 }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "overrides": [
+    {
+      "files": ["src/components/**/*.{ts,tsx}", "src/hooks/**/*.{ts,tsx}", "src/stores/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              { "group": ["@/lib/supabase/admin", "@/lib/ai/*", "@/lib/services/*", "@/lib/env"], "message": "Server-only module: do not import from client code." }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

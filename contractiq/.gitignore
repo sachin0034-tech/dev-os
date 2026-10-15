@@ -1,0 +1,36 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env — only .env.example is committed
+.env
+.env*.local
+.env.test
+
+# generated
+/public/pdf.worker.min.mjs
+/evals/results/*.json
+
+# testing
+/coverage
+/playwright-report/
+/test-results/
+/blob-report/
+
+# supabase
+/supabase/.temp/
+/supabase/.branches/
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+.vercel
+
+# verification builds
+/.next-verify/

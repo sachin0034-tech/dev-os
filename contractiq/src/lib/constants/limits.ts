@@ -1,0 +1,20 @@
+// Shared limits — docs/specs/project-setup-and-conventions.md §5
+export const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
+export const MAX_DIRECT_UPLOAD_BYTES = 4 * 1024 * 1024; // Vercel body limit fallback
+export const MAX_PAGES = 20;
+export const MIN_WORDS = 100;
+export const MAX_CONTRACT_TOKENS = 15_000;
+export const MAX_CUSTOM_TERMS = 5;
+export const CUSTOM_TERM_MIN = 2;
+export const CUSTOM_TERM_MAX = 80;
+export const MAX_TERM_VALUE_CHARS = 2_000;
+export const MAX_SOURCE_SENTENCE_CHARS = 1_000;
+export const MAX_CHAT_MESSAGE_CHARS = 2_000;
+export const MAX_CHAT_HISTORY_MESSAGES = 200;
+export const MAX_CHAT_HISTORY_TOKENS = 20_000;
+export const MAX_FEEDBACK_COMMENT_CHARS = 1_000;
+export const SIGNED_URL_TTL_SECONDS = 3_600;
+export const STALE_PROCESSING_MS = 3 * 60 * 1000;
+export const PDF_RETENTION_DAYS = 90;
+export const CONFIDENCE_HIGH = 80;
+export const CONFIDENCE_LOW = 50;

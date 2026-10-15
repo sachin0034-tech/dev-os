@@ -45,7 +45,7 @@ When done, show the user what was created and ask:
 ### Stage 3 — Frontend Setup
 **Skill:** `/frontend-setup`
 **Input:** Approved specs from Stage 2
-**Output:** Scaffolded Next.js 14 (App Router) project with full folder structure
+**Output:** Scaffolded Next.js (App Router) project with full folder structure — now on Next.js 15.5 + React 19 (upgraded in Stage 7 to close Next.js 14 security advisories; see `docs/security/security-plan.md`)
 
 Scaffold the Next.js project based on the folder structure and conventions defined in the specs. Ask the user where to create the project folder before writing any files.
 
@@ -121,7 +121,7 @@ When done, show the user what was created and ask:
 |---|---|---|
 | Engineering Planner | `/engineering-planner` | PRD → `docs/engineering/engineering-doc.md` + `docs/engineering/implementation-specs.md` |
 | Implementation Specs | `/implementation-specs` | Engineering docs → granular spec files + `supabase-schema.sql` + `.env.example` |
-| Frontend Setup | `/frontend-setup` | Scaffolds a Next.js 14 App Router project |
+| Frontend Setup | `/frontend-setup` | Scaffolds a Next.js App Router project (ContractIQ runs Next.js 15.5 + React 19) |
 | Design System | `/design-system` | Enforces brand colors, typography, spacing, and component styles on all UI code |
 | Security Foundation | `/security-foundation` | Implements all security controls → `docs/security/security-plan.md` + `supabase/rls-policies.sql` + `src/lib/security/` |
 

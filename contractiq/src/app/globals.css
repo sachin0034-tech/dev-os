@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens — docs/design.md (allNeurons) → docs/specs/design-tokens.md */
+@layer base {
+  :root {
+    /* Primitives (only referenced by the semantic tokens below) */
+    --grey-900: #070a0e; --grey-800: #151719; --grey-700: #25272b; --grey-600: #2c2f32; --grey-500: #4a4c4f;
+    --grey-400: #5e6062; --grey-300: #8f9193; --grey-200: #c1c2c3; --grey-100: #dadadb; --grey-50: #f0f0f1; --grey-25: #fafafa;
+    --blue-700: #0d469e; --blue-500: #115acb; --blue-200: #92b7f0; --blue-50: #e7effc;
+    --green-700: #0d720a; --green-500: #13a10e; --green-200: #92d490; --green-50: #e7f6e7;
+    --red-700: #942528; --red-500: #d13438; --red-200: #eaa2a3; --red-50: #faebeb;
+    --yellow-800: #b36800; --yellow-500: #ffaa33; --yellow-200: #ffe3bd; --yellow-50: #fff9f0;
+    --violet-700: #6600cc; --violet-500: #7f00ff; --violet-200: #e3c7ff; --violet-50: #f7f0ff;
+
+    /* Semantic tokens */
+    --text-primary: var(--grey-900);
+    --text-secondary: var(--grey-500);
+    --text-disabled: var(--grey-400);
+    --text-on-brand: #ffffff;
+    --bg-primary: #ffffff;
+    --bg-surface: var(--grey-25);
+    --bg-subtle: var(--grey-50);
+    --bg-pressed: var(--grey-100);
+    --border-default: var(--grey-100);
+    --border-strong: var(--grey-200);
+    --brand: var(--blue-500);
+    --brand-hover: var(--blue-700);
+    --brand-tint: var(--blue-50);
+    --focus-ring: var(--blue-500);
+    --success: var(--green-500); --success-tint: var(--green-50); --success-border: var(--green-200); --success-text: var(--green-700);
+    --danger: var(--red-500); --danger-tint: var(--red-50); --danger-border: var(--red-200); --danger-text: var(--red-700);
+    --warning: var(--yellow-500); --warning-tint: var(--yellow-50); --warning-border: var(--yellow-200); --warning-text: var(--yellow-800);
+    --info: var(--blue-500); --info-tint: var(--blue-50); --info-border: var(--blue-200); --info-text: var(--blue-700);
+    --accent: var(--violet-500); --accent-tint: var(--violet-50); --accent-border: var(--violet-200); --accent-text: var(--violet-700);
+    --highlight: var(--yellow-200);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-surface font-sans text-primary;
+    letter-spacing: 0;
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .ci-highlight {
+    background: var(--highlight);
+    color: inherit;
+    border-radius: 2px;
+    transition: background-color 300ms ease-in-out;
+  }
+}
+
+@keyframes ci-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}

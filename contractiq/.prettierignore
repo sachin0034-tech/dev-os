@@ -1,0 +1,6 @@
+.next
+.next-verify
+node_modules
+public/pdf.worker.min.mjs
+supabase/migrations
+evals/results

@@ -1,0 +1,4 @@
+# Secrets — only .env.example templates are committed
+.env
+.env*.local
+.DS_Store
